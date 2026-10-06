@@ -3,7 +3,6 @@
 use App\Services\PriceCalculatorService;
 
 describe('PriceCalculator - Percentage Discount', function () {
-
     it('applies percentage discount', function () {
         $calc = new PriceCalculatorService();
 
@@ -11,17 +10,15 @@ describe('PriceCalculator - Percentage Discount', function () {
             ->toBe(80.0);
     });
 
-    it('round discounted price', function() {
+    it('round discounted price', function () {
         $calc = new PriceCalculatorService();
 
         expect($calc->applyPercentageDiscount(100, 12.345))
             ->toBe(87.66);
     });
-
 });
 
 describe('PriceCalculator - Fixed Discount', function () {
-
     it('applies fixed discount', function () {
         $calc = new PriceCalculatorService();
 
@@ -39,19 +36,17 @@ describe('PriceCalculator - Fixed Discount', function () {
     it('throws exception for negative discount', function () {
         $calc = new PriceCalculatorService();
 
-        expect(fn() => $calc->applyFixedDiscount(100, -10))
+        expect(fn () => $calc->applyFixedDiscount(100, -10))
             ->toThrow(InvalidArgumentException::class);
     });
-
 });
 
 describe('PriceCalculator - Tax and Final Price', function () {
-
     it('adds tax to price', function () {
         $calc = new PriceCalculatorService();
 
         expect($calc->addTax(100, 10))
-          ->toBe(110.0);
+            ->toBe(110.0);
     });
 
     it('rounds taxed price', function () {
@@ -61,7 +56,6 @@ describe('PriceCalculator - Tax and Final Price', function () {
     });
 
     it('calculates final price with discount and tax', function () {
-
         $calc = new PriceCalculatorService();
 
         expect($calc->finalPrice(100, 10, 21))

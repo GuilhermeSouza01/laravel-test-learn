@@ -16,10 +16,8 @@ it('shows login page', function () {
         ->assertDontSee('Dashboard');
 });
 
-
-
-it('test that there are on console logs and errors', function() {
-    $pages = visit(['/','/login','/register']);
+it('test that there are on console logs and errors', function () {
+    $pages = visit(['/', '/login', '/register']);
     [$home, $login, $register] = $pages;
     $home->assertTitle('Welcome - Laravel');
     $login->assertTitle('Log in - Laravel');
@@ -27,6 +25,4 @@ it('test that there are on console logs and errors', function() {
 
     $pages->assertNoConsoleLogs()
         ->assertNoJavascriptErrors();
-
-
 });
