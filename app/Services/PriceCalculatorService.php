@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class PriceCalculatorService
 {
-    public function applyPercentageDiscount(float $price, float $percent):float
+    public function applyPercentageDiscount(float $price, float $percent): float
     {
         if ($percent < 0 || $percent > 100) {
             throw new InvalidArgumentException('Invalid discount percent.');
@@ -35,6 +35,4 @@ class PriceCalculatorService
 
         return $this->addTax($afterDiscount, $taxPercent);
     }
-
-
 }
