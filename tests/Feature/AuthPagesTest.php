@@ -2,26 +2,28 @@
 
 use App\Models\User;
 
-it('test that login works', function () {
-    $user = User::factory()->create([
+beforeEach(function () {
+     $this->user = User::factory()->create([
         'password' => bcrypt($password = 'password'),
     ]);
+});
+
+it('test that login works', function () {
+
 
     visit('/login')
-        ->type('email', $user->email)
+        ->type('email', $this->user->email)
         ->type('password', 'password')
         ->press('Log in')
         ->assertPathIs('/dashboard');
 });
 
 it('test that mobile menu works', function() {
-   $user = User::factory()->create([
-        'password' => bcrypt($password = 'password'),
-    ]);
+
 
    visit('/login')
         ->on()->mobile()
-        ->type('email', $user->email)
+        ->type('email', $this->user->email)
         ->type('password', 'password')
         ->press('Log in')
         ->assertPathIs('/dashboard')
